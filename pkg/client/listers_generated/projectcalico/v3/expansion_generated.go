@@ -48,6 +48,10 @@ type IPReservationListerExpansion interface{}
 // KubeControllersConfigurationLister.
 type KubeControllersConfigurationListerExpansion interface{}
 
+// NetworkListerExpansion allows custom methods to be added to
+// NetworkLister.
+type NetworkListerExpansion interface{}
+
 // NetworkPolicyListerExpansion allows custom methods to be added to
 // NetworkPolicyLister.
 type NetworkPolicyListerExpansion interface{}

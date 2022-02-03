@@ -58,6 +58,10 @@ func (c *FakeProjectcalicoV3) KubeControllersConfigurations() v3.KubeControllers
 	return &FakeKubeControllersConfigurations{c}
 }
 
+func (c *FakeProjectcalicoV3) Networks() v3.NetworkInterface {
+	return &FakeNetworks{c}
+}
+
 func (c *FakeProjectcalicoV3) NetworkPolicies(namespace string) v3.NetworkPolicyInterface {
 	return &FakeNetworkPolicies{c, namespace}
 }

@@ -81,6 +81,10 @@ gen-files .generate_files: lint-cache-dir clean-generated
 		--input-dirs "$(PACKAGE_NAME)/pkg/apis/projectcalico/v3,k8s.io/api/core/v1,k8s.io/api/networking/v1,k8s.io/apimachinery/pkg/apis/meta/v1,k8s.io/apimachinery/pkg/version,k8s.io/apimachinery/pkg/runtime,k8s.io/apimachinery/pkg/util/intstr,$(PACKAGE_NAME)/pkg/lib/numorstring" \
 		--output-package "$(PACKAGE_NAME)/pkg/openapi"'
 
+	# generate crds
+	rm -rf config
+	$(DOCKER_RUN) $(CALICO_BUILD) controller-gen  crd:crdVersions=v1 paths=./pkg/apis/... output:crd:dir=config/crd/
+
 	touch .generate_files
 	$(MAKE) fix
 

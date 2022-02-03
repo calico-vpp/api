@@ -26,6 +26,8 @@ type IPReservationExpansion interface{}
 
 type KubeControllersConfigurationExpansion interface{}
 
+type NetworkExpansion interface{}
+
 type NetworkPolicyExpansion interface{}
 
 type NetworkSetExpansion interface{}

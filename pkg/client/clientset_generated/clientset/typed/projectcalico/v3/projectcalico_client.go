@@ -23,6 +23,7 @@ type ProjectcalicoV3Interface interface {
 	IPPoolsGetter
 	IPReservationsGetter
 	KubeControllersConfigurationsGetter
+	NetworksGetter
 	NetworkPoliciesGetter
 	NetworkSetsGetter
 	ProfilesGetter
@@ -75,6 +76,10 @@ func (c *ProjectcalicoV3Client) IPReservations() IPReservationInterface {
 
 func (c *ProjectcalicoV3Client) KubeControllersConfigurations() KubeControllersConfigurationInterface {
 	return newKubeControllersConfigurations(c)
+}
+
+func (c *ProjectcalicoV3Client) Networks() NetworkInterface {
+	return newNetworks(c)
 }
 
 func (c *ProjectcalicoV3Client) NetworkPolicies(namespace string) NetworkPolicyInterface {

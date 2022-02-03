@@ -61,6 +61,8 @@ func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Projectcalico().V3().IPReservations().Informer()}, nil
 	case v3.SchemeGroupVersion.WithResource("kubecontrollersconfigurations"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Projectcalico().V3().KubeControllersConfigurations().Informer()}, nil
+	case v3.SchemeGroupVersion.WithResource("networks"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Projectcalico().V3().Networks().Informer()}, nil
 	case v3.SchemeGroupVersion.WithResource("networkpolicies"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Projectcalico().V3().NetworkPolicies().Informer()}, nil
 	case v3.SchemeGroupVersion.WithResource("networksets"):

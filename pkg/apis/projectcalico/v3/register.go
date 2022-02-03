@@ -48,6 +48,8 @@ var (
 		&NetworkSetList{},
 		&CalicoNodeStatus{},
 		&CalicoNodeStatusList{},
+		&NetworkList{},
+		&Network{},
 	}
 )
 

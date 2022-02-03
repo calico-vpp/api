@@ -32,6 +32,8 @@ type Interface interface {
 	IPReservations() IPReservationInformer
 	// KubeControllersConfigurations returns a KubeControllersConfigurationInformer.
 	KubeControllersConfigurations() KubeControllersConfigurationInformer
+	// Networks returns a NetworkInformer.
+	Networks() NetworkInformer
 	// NetworkPolicies returns a NetworkPolicyInformer.
 	NetworkPolicies() NetworkPolicyInformer
 	// NetworkSets returns a NetworkSetInformer.
@@ -104,6 +106,11 @@ func (v *version) IPReservations() IPReservationInformer {
 // KubeControllersConfigurations returns a KubeControllersConfigurationInformer.
 func (v *version) KubeControllersConfigurations() KubeControllersConfigurationInformer {
 	return &kubeControllersConfigurationInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+}
+
+// Networks returns a NetworkInformer.
+func (v *version) Networks() NetworkInformer {
+	return &networkInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
 }
 
 // NetworkPolicies returns a NetworkPolicyInformer.

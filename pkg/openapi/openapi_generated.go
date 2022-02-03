@@ -72,12 +72,15 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.KubeControllersConfigurationSpec":   schema_pkg_apis_projectcalico_v3_KubeControllersConfigurationSpec(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.KubeControllersConfigurationStatus": schema_pkg_apis_projectcalico_v3_KubeControllersConfigurationStatus(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NamespaceControllerConfig":          schema_pkg_apis_projectcalico_v3_NamespaceControllerConfig(ref),
+		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.Network":                            schema_pkg_apis_projectcalico_v3_Network(ref),
+		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkList":                        schema_pkg_apis_projectcalico_v3_NetworkList(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkPolicy":                      schema_pkg_apis_projectcalico_v3_NetworkPolicy(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkPolicyList":                  schema_pkg_apis_projectcalico_v3_NetworkPolicyList(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkPolicySpec":                  schema_pkg_apis_projectcalico_v3_NetworkPolicySpec(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkSet":                         schema_pkg_apis_projectcalico_v3_NetworkSet(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkSetList":                     schema_pkg_apis_projectcalico_v3_NetworkSetList(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkSetSpec":                     schema_pkg_apis_projectcalico_v3_NetworkSetSpec(ref),
+		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkSpec":                        schema_pkg_apis_projectcalico_v3_NetworkSpec(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NodeControllerConfig":               schema_pkg_apis_projectcalico_v3_NodeControllerConfig(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.PolicyControllerConfig":             schema_pkg_apis_projectcalico_v3_PolicyControllerConfig(ref),
 		"github.com/projectcalico/api/pkg/apis/projectcalico/v3.PrefixAdvertisement":                schema_pkg_apis_projectcalico_v3_PrefixAdvertisement(ref),
@@ -3528,6 +3531,95 @@ func schema_pkg_apis_projectcalico_v3_NamespaceControllerConfig(ref common.Refer
 	}
 }
 
+func schema_pkg_apis_projectcalico_v3_Network(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkSpec"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/projectcalico/api/pkg/apis/projectcalico/v3.NetworkSpec", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_pkg_apis_projectcalico_v3_NetworkList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NetworkList is a list of Network resources.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
+						},
+					},
+					"items": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/projectcalico/api/pkg/apis/projectcalico/v3.Network"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"items"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/projectcalico/api/pkg/apis/projectcalico/v3.Network", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+	}
+}
+
 func schema_pkg_apis_projectcalico_v3_NetworkPolicy(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
@@ -3807,6 +3899,28 @@ func schema_pkg_apis_projectcalico_v3_NetworkSetSpec(ref common.ReferenceCallbac
 						},
 					},
 				},
+			},
+		},
+	}
+}
+
+func schema_pkg_apis_projectcalico_v3_NetworkSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "NetworkSpec contains the specification of an isolated L3 network",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"vni": {
+						SchemaProps: spec.SchemaProps{
+							Description: "The VNI to use for this network. Shold be different from the default VNI (or a different encap).",
+							Default:     0,
+							Type:        []string{"integer"},
+							Format:      "int32",
+						},
+					},
+				},
+				Required: []string{"vni"},
 			},
 		},
 	}
